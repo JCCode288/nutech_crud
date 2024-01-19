@@ -10,9 +10,6 @@ class ViewController extends Controller
     public function mainPage(){
         $products = Product::orderBy("created_at","desc")->paginate(5);
 
-        print_r($products);
-
-
         return view(ViewRoute::$VIEW_NAME['HOME'], ['products'=> $products]);
     }
 
