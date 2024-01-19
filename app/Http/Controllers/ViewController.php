@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\User;
 use App\Utils\ViewRoute;
 
 class ViewController extends Controller
 {
     public function mainPage(){
-        $products = Product::orderBy("id","desc")->get();
+        $products = Product::orderBy("created_at","desc")->paginate(5);
+
+        print_r($products);
+
+
         return view(ViewRoute::$VIEW_NAME['HOME'], ['products'=> $products]);
     }
 

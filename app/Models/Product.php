@@ -19,6 +19,8 @@ class Product extends Model
         "category_id"
     ];
 
+    protected $appends = ['selling_price'];
+
     public function category():BelongsTo
     {
             return $this->belongsTo(Category::class);
@@ -26,10 +28,10 @@ class Product extends Model
 
     public function uploader():BelongsTo
     {
-            return $this->belongsTo(User::class);
+            return $this->belongsTo(User::class, 'uploader_id');
     }
 
-    public function selling_price()
+    public function getSellingPriceAttribute()
     {
             return ($this->product_price*0.3) + $this->product_price;
     }
