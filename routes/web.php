@@ -15,7 +15,7 @@ use App\Utils\ViewRoute;
 |
 */
 
-Route::get(ViewRoute::$HOME, [ViewController::class, 'main']);
+Route::get(ViewRoute::$HOME, [ViewController::class, 'mainPage']);
 
 Route::get(ViewRoute::$ADD_PRODUCT,  [ViewController::class, 'addProductPage']);
 

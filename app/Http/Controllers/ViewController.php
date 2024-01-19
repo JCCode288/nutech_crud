@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Product;
 use App\Utils\ViewRoute;
 
 class ViewController extends Controller
 {
     public function mainPage(){
-        return view(ViewRoute::$VIEW_NAME['HOME']);
+        $products = Product::orderBy("id","desc")->get();
+        return view(ViewRoute::$VIEW_NAME['HOME'], ['products'=> $products]);
     }
 
     public function addProductPage(){

@@ -7,5 +7,12 @@
 </head>
 <body>
     <h1>Home Page</h1>
+    @foreach($products as $product)
+        <div>
+            @verbatim
+            <div>{{ JSON.stringify($product) }}</div>
+            @endverbatim
+        </div>
+    @endforeach
 </body>
 </html>
