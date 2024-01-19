@@ -21,6 +21,8 @@ Route::get(ViewRoute::$ADD_PRODUCT,  [ViewController::class, 'addProductPage']);
 
 Route::get(ViewRoute::$ADD_CATEGORY,  [ViewController::class, 'addCategoryPage']);
 
-Route::get(ViewRoute::$PROFILE,  [ViewController::class, 'loginPage']);
+Route::get(ViewRoute::$PROFILE,  [ViewController::class, 'profilePage']);
 
-Route::get(ViewRoute::$LOGIN,  [ViewController::class, 'registerPage']);
+Route::get(ViewRoute::$LOGIN,  [ViewController::class, 'loginPage']);
+
+Route::get(ViewRoute::$REGISTER,  [ViewController::class, 'registerPage']);
