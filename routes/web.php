@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
+use App\Utils\ViewRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get(ViewRoute::$HOME, [ViewController::class, 'main']);
+
+Route::get(ViewRoute::$ADD_PRODUCT,  [ViewController::class, 'addProductPage']);
+
+Route::get(ViewRoute::$ADD_CATEGORY,  [ViewController::class, 'addCategoryPage']);
+
+Route::get(ViewRoute::$PROFILE,  [ViewController::class, 'loginPage']);
+
+Route::get(ViewRoute::$LOGIN,  [ViewController::class, 'registerPage']);
