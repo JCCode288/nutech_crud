@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\ViewController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\LoginController;
 use App\Utils\ViewRoute;
+use App\Utils\ApiRoute;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +17,20 @@ use App\Utils\ViewRoute;
 |
 */
 
-Route::get(ViewRoute::$HOME, [ViewController::class, 'mainPage']);
+Route::get(ViewRoute::$HOME, [Controller::class, 'index']);
 
-Route::get(ViewRoute::$ADD_PRODUCT,  [ViewController::class, 'addProductPage']);
+// Route::get(ViewRoute::$ADD_PRODUCT,  [ViewController::class, 'addProductPage']);
 
-Route::get(ViewRoute::$ADD_CATEGORY,  [ViewController::class, 'addCategoryPage']);
+// Route::get(ViewRoute::$ADD_CATEGORY,  [ViewController::class, 'addCategoryPage']);
 
-Route::get(ViewRoute::$PROFILE,  [ViewController::class, 'profilePage']);
+// Route::get(ViewRoute::$PROFILE,  [ViewController::class, 'profilePage']);
 
-Route::get(ViewRoute::$LOGIN,  [ViewController::class, 'loginPage']);
+Route::get(ViewRoute::$LOGIN,  [LoginController::class, 'index']);
 
-Route::get(ViewRoute::$REGISTER,  [ViewController::class, 'registerPage']);
+Route::post(ApiRoute::$LOGIN, [LoginController::class, 'login']);
+
+Route::post(ApiRoute::$LOGOUT, [LoginController::class, 'logout']);
+
+Route::get(ViewRoute::$REGISTER,  [LoginController::class, 'register']);
+
+Route::post(ApiRoute::$REGISTER, [LoginController::class, 'registerAction']);

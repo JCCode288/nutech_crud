@@ -7,11 +7,6 @@ use App\Utils\ViewRoute;
 
 class ViewController extends Controller
 {
-    public function mainPage(){
-        $products = Product::orderBy("created_at","desc")->paginate(5);
-
-        return view(ViewRoute::$VIEW_NAME['HOME'], ['products'=> $products]);
-    }
 
     public function addProductPage(){
         return view(ViewRoute::$VIEW_NAME['ADD_PRODUCT']);;
