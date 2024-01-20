@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 255)->unique();
             $table->integer('stock');
             $table->integer('product_price');
-            $table->text('image_path');
+            $table->text('image_path')->nullable();
             $table->foreignIdFor(User::class, 'uploader_id');
             $table->foreignIdFor(Category::class, 'category_id');
             $table->timestamps();

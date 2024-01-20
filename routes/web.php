@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
+use App\Http\Middleware\AuthChecker;
+use App\Utils\ViewRoute;
+use App\Utils\ApiRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +20,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => AuthChecker::class], function(){
+    Route::get(ViewRoute::$HOME, [Controller::class, 'index']);
+
+    Route::get(ViewRoute::$ADD_PRODUCT,  [ProductController::class, 'index']);
+
+    Route::get(ViewRoute::$ADD_CATEGORY,  [CategoryController::class, 'index']);
+
+    Route::get(ViewRoute::$PROFILE,  [Controller::class, 'profilePage']);
+});
+
+
+Route::group(['login'], function(){
+    Route::get(ViewRoute::$LOGIN,  [LoginController::class, 'index']);
+
+    Route::post(ApiRoute::$LOGIN, [LoginController::class, 'login']);
+
+    Route::get(ApiRoute::$LOGOUT, [LoginController::class, 'logout']);
+
+    Route::get(ViewRoute::$REGISTER,  [LoginController::class, 'register']);
+
+    Route::post(ApiRoute::$REGISTER, [LoginController::class, 'registerAction']);
 });

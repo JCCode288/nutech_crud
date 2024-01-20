@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use  HasFactory;
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -43,6 +45,6 @@ class User extends Authenticatable
 
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany("Product");
     }
 }
