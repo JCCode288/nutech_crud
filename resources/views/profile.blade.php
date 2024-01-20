@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.default')
+@section('page')
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
 </head>
-<body>
-    <h1>Profile Page</h1>
-</body>
-</html>
+<body class='flex'>
+<!-- Sidebar Start -->
+    <x-sidebar.base />
+<!-- Sidebar End -->
+<!-- Main Start -->
+<main class='flex flex-col text-wrap'>
+   Profile Page
+</main>
+

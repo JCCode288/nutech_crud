@@ -14,12 +14,12 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
 
     public function index(){
-        if(!Auth::check()){
-            return redirect('login');
-        }
-
         $products = Product::orderBy("created_at","desc")->paginate(5);
 
         return view(ViewRoute::$VIEW_NAME['HOME'], ['products'=> $products]);
+    }
+
+    public function profilePage(){
+        return view(ViewRoute::$VIEW_NAME['PROFILE']);
     }
 }

@@ -5,7 +5,7 @@
 
         @auth
         <a href="#" class="flex items-center px-4 -mx-2">
-            <span class="mx-2 font-medium text-gray-800 dark:text-gray-200">John Doe</span>
+            <span class="mx-2 font-medium text-gray-800 dark:text-gray-200">{{ auth()->user()->name }}</span>
         </a>
         @endauth
     </div>

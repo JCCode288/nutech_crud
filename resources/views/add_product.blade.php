@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.default')
+@section('page')
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
 </head>
 <body>
     <h1>Add Product Page</h1>
 </body>
-</html>

@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
+use App\Http\Middleware\AuthChecker;
+use App\Http\Middleware\Authenticate;
 use App\Utils\ViewRoute;
 use App\Utils\ApiRoute;
 use Illuminate\Support\Facades\Route;
@@ -19,11 +23,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get(ViewRoute::$HOME, [Controller::class, 'index']);
 
-// Route::get(ViewRoute::$ADD_PRODUCT,  [ViewController::class, 'addProductPage']);
+Route::get(ViewRoute::$ADD_PRODUCT,  [ProductController::class, 'index']);
 
-// Route::get(ViewRoute::$ADD_CATEGORY,  [ViewController::class, 'addCategoryPage']);
+Route::get(ViewRoute::$ADD_CATEGORY,  [CategoryController::class, 'index']);
 
-// Route::get(ViewRoute::$PROFILE,  [ViewController::class, 'profilePage']);
+Route::get(ViewRoute::$PROFILE,  [Controller::class, 'profilePage']);
 
 Route::get(ViewRoute::$LOGIN,  [LoginController::class, 'index']);
 

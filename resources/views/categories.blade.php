@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('page')
 <head>
-    <title>Home</title>
+    <title>Categories</title>
 </head>
 <body class='flex'>
 <!-- Sidebar Start -->
@@ -9,7 +9,7 @@
 <!-- Sidebar End -->
 <!-- Main Start -->
 <main class='flex flex-col text-wrap'>
-    <x-main.table :dataArr="$products"/>
+    <x-main.table :dataArr="$categories"/>
 </main>
 <!-- Main End -->
 </body>

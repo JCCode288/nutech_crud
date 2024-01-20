@@ -1,8 +1,8 @@
 <div>
     <div>
-    @foreach($products as $product)
+    @foreach($dataArr as $data)
         <div class='flex'>
-            {{json_encode($product)}}
+            {{json_encode($data)}}
         </div>
     @endforeach
     </div>

@@ -61,4 +61,11 @@ class LoginController extends Controller
 
         return redirect('/login')->with('registerSuccess', $validated['name'].'is Successfully Registered');
     }
+
+    public function checkLoginMiddleware(Request $request){
+        if(!Auth::check()){
+            return redirect('login');
+        }
+
+    }
 }
