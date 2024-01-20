@@ -1,15 +1,12 @@
 @extends('layouts.default')
 @section('page')
-<head>
-    <title>Categories</title>
-</head>
-<body class='flex'>
+<body class='flex bg-gray-50 dark:bg-slate-800'>
 <!-- Sidebar Start -->
     <x-sidebar.base />
 <!-- Sidebar End -->
 <!-- Main Start -->
-<main class='flex flex-col text-wrap'>
-    <x-main.table :dataArr="$categories"/>
+<main class='flex flex-col text-wrap bg-inherit'>
+    <x-categories.table :dataArr="$categories"/>
 </main>
 <!-- Main End -->
 </body>

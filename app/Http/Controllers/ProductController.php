@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -17,9 +18,20 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+       $validated = $request->validate([
+        'name'=> 'required|unique:products|max:255',
+        'stock'=> 'required|numeric|min:1',
+        'product_price' => 'required|numeric|min:1',
+        'image_path' => 'nullable',
+        'uploader_id' => 'required|exists:users,id|integer|min:1',
+        'category_id' => 'required|exists:categories,id|integer|min:1'
+       ]);
+
+        Product::create($validated);
+
+        return redirect('/')->with('addProductSuccess',  $validated['name'].' is added to list.');
     }
 
     /**
@@ -41,17 +53,20 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
-    }
+        $validated = $request->validate(['id' => 'required|exists=products,id|numeric',
+        'name'=> 'required|max:255',
+        'stock'=> 'required|numeric|min:1',
+        'product_price' => 'required|numeric|min:1',
+        'image_path' => 'nullable',
+        'uploader_id' => 'required|exists:users,id|integer|min:1',
+        'category_id' => 'required|exists:categories,id|integer|min:1'
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        Product::update($validated);
+
+        return redirect('/')->with('editProductSuccess',  $validated['name'].' is successfully edited.');
     }
 
     /**
@@ -59,6 +74,14 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);
+
+        if(!$product){
+            return redirect('/')->with('delProductFailed', $product['name'].' is not found.');
+        }
+
+        Product::destroy($id);
+
+        return redirect('/')->with('delProductSuccess', $product['name'].' is successfully deleted');
     }
 }

@@ -20,41 +20,15 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'name' => 'required|unique:categories',
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        Category::create($validated);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        return redirect()->route('/categories')->with('addCategorySuccess', $validated['name'].' is successfully added to categories list.');
     }
 
     /**
@@ -62,6 +36,10 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        Category::destroy($category->id);
+
+        return redirect('/categories')->route('')->with('delCategorySuccess', $category['name'].' is successfully deleted.');
     }
 }

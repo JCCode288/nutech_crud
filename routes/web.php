@@ -20,20 +20,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get(ViewRoute::$HOME, [Controller::class, 'index'])->middleware(AuthChecker::class);
+Route::group(['middleware' => AuthChecker::class], function(){
+    Route::get(ViewRoute::$HOME, [Controller::class, 'index']);
 
-Route::get(ViewRoute::$ADD_PRODUCT,  [ProductController::class, 'index'])->middleware(AuthChecker::class);
+    Route::get(ViewRoute::$ADD_PRODUCT,  [ProductController::class, 'index']);
 
-Route::get(ViewRoute::$ADD_CATEGORY,  [CategoryController::class, 'index'])->middleware(AuthChecker::class);
+    Route::get(ViewRoute::$ADD_CATEGORY,  [CategoryController::class, 'index']);
 
-Route::get(ViewRoute::$PROFILE,  [Controller::class, 'profilePage'])->middleware(AuthChecker::class);
+    Route::get(ViewRoute::$PROFILE,  [Controller::class, 'profilePage']);
+});
 
-Route::get(ViewRoute::$LOGIN,  [LoginController::class, 'index']);
 
-Route::post(ApiRoute::$LOGIN, [LoginController::class, 'login']);
+Route::group(['login'], function(){
+    Route::get(ViewRoute::$LOGIN,  [LoginController::class, 'index']);
 
-Route::post(ApiRoute::$LOGOUT, [LoginController::class, 'logout']);
+    Route::post(ApiRoute::$LOGIN, [LoginController::class, 'login']);
 
-Route::get(ViewRoute::$REGISTER,  [LoginController::class, 'register']);
+    Route::get(ApiRoute::$LOGOUT, [LoginController::class, 'logout']);
 
-Route::post(ApiRoute::$REGISTER, [LoginController::class, 'registerAction']);
+    Route::get(ViewRoute::$REGISTER,  [LoginController::class, 'register']);
+
+    Route::post(ApiRoute::$REGISTER, [LoginController::class, 'registerAction']);
+});

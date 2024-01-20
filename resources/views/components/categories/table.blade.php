@@ -1,13 +1,13 @@
-<section class="container px-4 mx-auto h-screen overflow-y-scroll overflow-x-hidden w-full">
+<section class="container flex flex-col px-4 mx-auto h-screen overflow-y-scroll overflow-x-hidden max-w-screen">
     <div class="sm:flex sm:items-center sm:justify-between">
-        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Product List</h2>
+        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Category List</h2>
 
         <div class="flex items-center mt-4 gap-x-3">
             <button class="w-1/2 px-5 py-2 text-sm text-gray-800 transition-colors duration-200 bg-white border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-white dark:border-gray-700">
                 Download all
             </button>
 
-            <a href="/product/create">
+            <a href="/category/create">
                 <button class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_3098_154395)">
@@ -19,7 +19,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <span>Add Product</span>
+                    <span>Add Category</span>
                 </button>
             </a>
         </div>
@@ -34,45 +34,29 @@
                             <tr>
                                 <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <div class="flex items-center gap-x-3">
-                                        <span>Product Name</span>
+                                        <span>Category Name</span>
                                     </div>
                                 </th>
 
                                 <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Stock
+                                    Created At
                                 </th>
                                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Product Base Price
+                                    Updated At
                                 </th>
                                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Product Selling Price
+                                    Edit
                                 </th>
                                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Product Has Image
-                                </th>
-                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Uploaded by
-                                </th>
-                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Product Category
-                                </th>
-
-
-                                <th scope="col" class="relative py-3.5 px-4">
-                                    <span class="sr-only">Edit</span>
-                                </th>
-
-                                <th scope="col" class="relative py-3.5 px-4">
-                                    <span class="sr-only">Delete</span>
+                                    Delete
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                            @foreach($dataArr as $product)
+                            @foreach($dataArr as $category)
                             <tr>
                                 <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                     <div class="inline-flex items-center gap-x-3">
-
                                         <div class="flex items-center gap-x-2">
                                             <div class="flex items-center justify-center w-8 h-8 text-blue-500 bg-blue-100 rounded-full dark:bg-gray-800">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -81,29 +65,24 @@
                                             </div>
 
                                             <div>
-                                                <h2 class="font-normal text-gray-800 dark:text-white ">{{ $product->name }}</h2>
+                                                <h2 class="font-normal text-gray-800 dark:text-white ">{{ $category->name }}</h2>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-12 py-4 text-sm font-normal text-gray-800 dark:text-white whitespace-nowrap">
-                                   {{ $product->stock }}
+                                   {{ $category->created_at }}
                                 </td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $product->product_price }}</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $product->selling_price }}</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $product->image_path ? 'Yes' : 'No' }}</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $product->uploader->name }}</td>
-                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $product->category->name }}</td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <a href="{{ '/product/edit/'.$product->id }}">
-
+                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $category->updated_at }}</td>
+                                <td>
+                                    <a href="{{ '/category/edit/'.$category->id }}">
                                         <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
                                             [edit]
                                         </button>
                                     </a>
                                 </td>
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <form action="{{ '/product/'.$product->id }}" method="DELETE">
+                                    <form action="{{ '/category/'.$category->id }}" method="DELETE">
                                         <button class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
                                             [delete]
                                         </button>

@@ -34,7 +34,7 @@ class LoginController extends Controller
 
         $request->session()->flash('error', 'Email atau Password tidak sesuai');
 
-        return redirect('/login')->withErrors(["loginFail"=>"Email or Password is wrong"]);
+        return redirect('/login');
     }
 
     public function logout(Request $request)
@@ -42,17 +42,18 @@ class LoginController extends Controller
         Auth::logout();
 
         $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $request->session()->regenerate();
 
-        return to_route('/login');
+        return redirect()->to('/login')->with('successLogout', 'Successfully Logout');
     }
 
     public function registerAction(Request $request)
     {
         $validated = $request->validate(
         [
-            'email' => 'required',
-            'password' => 'required'
+            'email' => 'required|unique:users| max:64',
+            'password' => 'required|max:255',
+            'name' => 'nullable'
         ]);
 
         $validated['name'] = $request->get('name') ?? $request->get('email');
@@ -60,12 +61,5 @@ class LoginController extends Controller
         User::create($validated);
 
         return redirect('/login')->with('registerSuccess', $validated['name'].'is Successfully Registered');
-    }
-
-    public function checkLoginMiddleware(Request $request){
-        if(!Auth::check()){
-            return redirect('login');
-        }
-
     }
 }

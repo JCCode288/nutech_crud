@@ -14,7 +14,7 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
 
     public function index(){
-        $products = Product::orderBy("created_at","desc")->paginate(5);
+        $products = Product::orderBy("created_at","desc")->paginate(10);
 
         return view(ViewRoute::$VIEW_NAME['HOME'], ['products'=> $products]);
     }
