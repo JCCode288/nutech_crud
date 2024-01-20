@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.default')
+@section('page')
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
     <title>Home</title>
 </head>
 <body class='flex'>
@@ -17,4 +14,3 @@
 </main>
 <!-- Main End -->
 </body>
-</html>

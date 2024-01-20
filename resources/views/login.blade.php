@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.default')
+@section('page')
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
-<body>
+<body class='container'>
     <h1>Login Page</h1>
+    <x-login.form />
 </body>
-</html>
