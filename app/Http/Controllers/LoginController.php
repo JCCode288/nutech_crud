@@ -41,7 +41,10 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return redirect('login')->with(['logoutSuccess'=>'Successfully Logout']);
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return to_route('/login');
     }
 
     public function registerAction(Request $request)
