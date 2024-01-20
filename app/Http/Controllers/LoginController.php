@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -49,6 +49,16 @@ class LoginController extends Controller
 
     public function registerAction(Request $request)
     {
-        return ['register'=>'success'];
+        $validated = $request->validate(
+        [
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $validated['name'] = $request->get('name') ?? $request->get('email');
+
+        User::create($validated);
+
+        return redirect('/login')->with('registerSuccess', $validated['name'].'is Successfully Registered');
     }
 }
