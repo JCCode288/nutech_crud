@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => AuthChecker::class], function () {
-    Route::get(ViewRoute::$HOME, [Controller::class, 'index']);
+    Route::get(ViewRoute::$HOME, [Controller::class, 'main']);
 
     Route::get(ViewRoute::$ADD_PRODUCT,  [ProductController::class, 'index']);
 
