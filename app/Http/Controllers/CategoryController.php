@@ -12,7 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy("created_at","desc")->paginate(10);
+        $categories = Category::orderBy("created_at", "desc")->paginate(10);
 
         return view('categories', ['categories' => $categories]);
     }
@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
         Category::create($validated);
 
-        return redirect()->route('/categories')->with('addCategorySuccess', $validated['name'].' is successfully added to categories list.');
+        return redirect()->route('/categories')->with('addCategorySuccess', $validated['name'] . ' is successfully added to categories list.');
     }
 
     /**
@@ -40,6 +40,6 @@ class CategoryController extends Controller
 
         Category::destroy($category->id);
 
-        return redirect('/categories')->route('')->with('delCategorySuccess', $category['name'].' is successfully deleted.');
+        return redirect('/categories')->route('')->with('delCategorySuccess', $category['name'] . ' is successfully deleted.');
     }
 }
