@@ -17,14 +17,39 @@ class Controller extends BaseController
 
     public function main(Request $request)
     {
+        $search = $request->get('search');
         $categories = Category::all();
         $category_id = $request->input("category_id");
 
+        if ($search) {
+            $products = Product::where("name", 'ilike', '%' . $search . '%')->orderBy("created_at", "desc")->paginate(5);
+
+            $data = [
+                'products' => $products,
+                'categories' => $categories,
+                'nextPage' => $products->nextPageUrl(),
+                'prevPage' => $products->previousPageUrl()
+            ];
+
+            return view(ViewRoute::$VIEW_NAME['HOME'], $data);
+        }
+
         if ($category_id) {
             $products = Product::where("category_id", $category_id)->orderBy("created_at", "desc")->paginate(5);
-        } else {
-            $products = Product::orderBy("created_at", "desc")->paginate(5);
+
+
+            $data = [
+                'products' => $products,
+                'categories' => $categories,
+                'nextPage' => $products->nextPageUrl(),
+                'prevPage' => $products->previousPageUrl()
+            ];
+
+            return view(ViewRoute::$VIEW_NAME['HOME'], $data);
         }
+
+        $products = Product::orderBy("created_at", "desc")->paginate(5);
+
 
         $data = [
             'products' => $products,

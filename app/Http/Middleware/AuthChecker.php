@@ -16,9 +16,9 @@ class AuthChecker
      */
     public function handle(Request $request, Closure $next): Response
     {
-         $route = $request->path();
+        $route = $request->path();
 
-        if(!Auth::check() && $route != 'login' && $route != 'register') {
+        if (!Auth::check() && $route != 'login' && $route != 'register') {
             return redirect('/login');
         }
 
