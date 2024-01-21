@@ -126,23 +126,25 @@
                                         {{ $product->category->name }}</td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
                                         <a href="{{ '/product/edit/' . $product->id }}">
-
                                             <button
-                                                class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                                [edit]
+                                                class="p-2 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100 hover:text-gray-600">
+                                                <img src="{{ asset('storage/edit.png') }}" title="edit-btn"
+                                                    alt="edit-btn" />
+                                                <span class="">Edit</span>
                                             </button>
                                         </a>
                                     </td>
-                                    <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        <form action="{{ '/product/del/' . $product->id }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
+                                    <td class="flex p-4 text-sm whitespace-nowrap">
+                                        <a>
                                             <button
-                                                class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100"
-                                                type='submit'>
-                                                [delete]
+                                                class="p-2 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-red-700 my-auto"
+                                                onclick="deleteProduct('{{ $product->id }}', '{{ $product->name }}',
+                                                '{{ csrf_token() }}')">
+                                                <img src="{{ asset('storage/delete.png') }}" title="edit-btn"
+                                                    alt="edit-btn" class="mr-1">
+                                                <span class="">Del</span>
                                             </button>
-                                        </form>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
