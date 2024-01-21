@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\JsonExport;
 use App\Models\Category;
+use App\Utils\ViewRoute;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryController extends Controller
 {
@@ -12,9 +15,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy("created_at","desc")->paginate(10);
+        $categories = Category::orderBy("created_at", "desc")->paginate(10);
 
-        return view('categories', ['categories' => $categories]);
+        return view(ViewRoute::$VIEW_NAME['CATEGORIES'], ['categories' => $categories]);
+    }
+
+    public function addCategory()
+    {
+        return view(ViewRoute::$VIEW_NAME['ADD_CATEGORY'],);
     }
 
     /**
@@ -28,18 +36,25 @@ class CategoryController extends Controller
 
         Category::create($validated);
 
-        return redirect()->route('/categories')->with('addCategorySuccess', $validated['name'].' is successfully added to categories list.');
+        return redirect(ViewRoute::$CATEGORIES)->with('addCategorySuccess', $validated['name'] . ' is successfully added to categories list.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
         $category = Category::find($id);
 
         Category::destroy($category->id);
 
-        return redirect('/categories')->route('')->with('delCategorySuccess', $category['name'].' is successfully deleted.');
+        return redirect(ViewRoute::$CATEGORIES)->with('delCategorySuccess', $category['name'] . ' is successfully deleted.');
+    }
+
+    public function excel(Request $request)
+    {
+        $jsonData = json_decode($request->data, true);
+
+        return Excel::download(new JsonExport($jsonData), 'excel-category-' . date('Y-m-d') . '.xlsx');
     }
 }

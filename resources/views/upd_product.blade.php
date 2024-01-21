@@ -7,8 +7,7 @@
         <!-- Sidebar End -->
         <!-- Main Start -->
         <main class='flex flex-col text-wrap bg-inherit relative h-full w-full align-middle justify-center'>
-            <x-create.form :categories="$categories" :title="'Add Product'" :product="null" />
-
+            <x-create.form :categories="$categories" :title="'Edit Product'" :product="$product" />
         </main>
         <!-- Main End -->
     </body>

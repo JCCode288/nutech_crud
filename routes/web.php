@@ -20,18 +20,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => AuthChecker::class], function(){
-    Route::get(ViewRoute::$HOME, [Controller::class, 'index']);
+Route::group(['middleware' => AuthChecker::class], function () {
+    Route::get(ViewRoute::$HOME, [Controller::class, 'main']);
 
     Route::get(ViewRoute::$ADD_PRODUCT,  [ProductController::class, 'index']);
 
-    Route::get(ViewRoute::$ADD_CATEGORY,  [CategoryController::class, 'index']);
+    Route::post(ViewRoute::$ADD_PRODUCT, [ProductController::class, 'create']);
 
-    Route::get(ViewRoute::$PROFILE,  [Controller::class, 'profilePage']);
+    Route::get(ViewRoute::$EDIT_PRODUCT, [ProductController::class, 'editPage']);
+
+    Route::post(ViewRoute::$EDIT_PRODUCT, [ProductController::class, 'edit']);
+
+    Route::delete(ViewRoute::$DELETE_PRODUCT, [ProductController::class, 'delete']);
+
+    Route::post(ViewRoute::$EXCEL_PRODUCT, [ProductController::class, 'excel']);
 });
 
+Route::group(['middleware' => AuthChecker::class], function () {
+    Route::get(ViewRoute::$CATEGORIES,  [CategoryController::class, 'index']);
 
-Route::group(['login'], function(){
+    Route::get(ViewRoute::$ADD_CATEGORY,  [CategoryController::class, 'addCategory']);
+
+    Route::post(ViewRoute::$ADD_CATEGORY,  [CategoryController::class, 'create']);
+
+    Route::delete(ViewRoute::$DELETE_CATEGORY,  [CategoryController::class, 'delete']);
+
+    Route::post(ViewRoute::$EXCEL_CATEGORY,  [CategoryController::class, 'excel']);
+});
+
+Route::group(['login'], function () {
+    Route::get(ViewRoute::$PROFILE,  [Controller::class, 'profilePage']);
+
     Route::get(ViewRoute::$LOGIN,  [LoginController::class, 'index']);
 
     Route::post(ApiRoute::$LOGIN, [LoginController::class, 'login']);

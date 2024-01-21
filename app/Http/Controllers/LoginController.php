@@ -8,31 +8,33 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view("/login");
     }
 
-    public function register(){
+    public function register()
+    {
         return view('/register');
     }
 
-     public function login(Request $request)
+    public function login(Request $request)
     {
         $validated = $request->validate(
-        [
-            'email' => 'required',
-            'password' => 'required'
-        ]);
+            [
+                'email' => 'required',
+                'password' => 'required'
+            ]
+        );
 
-        if(Auth::attempt($validated))
-        {
+        if (Auth::attempt($validated)) {
             $user = Auth::user();
             Auth::login($user);
 
             return redirect('/')->with('loginSuccess', 'Successfully Login');
         }
 
-        $request->session()->flash('error', 'Email atau Password tidak sesuai');
+        session()->flash('error', 'Email atau Password tidak sesuai');
 
         return redirect('/login');
     }
@@ -50,16 +52,17 @@ class LoginController extends Controller
     public function registerAction(Request $request)
     {
         $validated = $request->validate(
-        [
-            'email' => 'required|unique:users| max:64',
-            'password' => 'required|max:255',
-            'name' => 'nullable'
-        ]);
+            [
+                'email' => 'required|unique:users| max:64',
+                'password' => 'required|max:255',
+                'name' => 'nullable'
+            ]
+        );
 
         $validated['name'] = $request->get('name') ?? $request->get('email');
 
         User::create($validated);
 
-        return redirect('/login')->with('registerSuccess', $validated['name'].'is Successfully Registered');
+        return redirect('/login')->with('registerSuccess', $validated['name'] . ' is Successfully Registered');
     }
 }
