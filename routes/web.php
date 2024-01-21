@@ -32,6 +32,8 @@ Route::group(['middleware' => AuthChecker::class], function () {
     Route::post(ViewRoute::$EDIT_PRODUCT, [ProductController::class, 'edit']);
 
     Route::delete(ViewRoute::$DELETE_PRODUCT, [ProductController::class, 'delete']);
+
+    Route::post(ViewRoute::$EXCEL_PRODUCT, [ProductController::class, 'excel']);
 });
 
 Route::group(['middleware' => AuthChecker::class], function () {

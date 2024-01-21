@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\JsonExport;
 use App\Models\Category;
 use App\Models\Product;
 use App\Utils\ViewRoute;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -129,5 +131,12 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect('/')->with('delProductSuccess', $product['name'] . ' is successfully deleted.');
+    }
+
+    public function excel(Request $request)
+    {
+        $jsonData = json_decode($request->data, true);
+
+        return Excel::download(new JsonExport($jsonData), 'excel-product-' . date('Y-m-d') . '.xlsx');
     }
 }

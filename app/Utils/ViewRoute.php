@@ -9,6 +9,7 @@ class ViewRoute
     public static $ADD_PRODUCT = '/product/create';
     public static $EDIT_PRODUCT = '/product/edit/{id}';
     public static $DELETE_PRODUCT = '/product/del/{id}';
+    public static $EXCEL_PRODUCT = '/product/excel';
     public static $ADD_CATEGORY = '/category/create';
     public static $DELETE_CATEGORY = '/category/del/{id}';
     public static $PROFILE = '/profile';
