@@ -114,7 +114,7 @@
                                         {{ $product->selling_price }}</td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                         @if ($product->image_path)
-                                            <img src="{{ asset($product->image_path) }}"
+                                            <img src="{{ asset('storage/' . $product->image_path) }}"
                                                 title="{{ $product->name . '_image' }}" alt="{{ $product->name }}" />
                                         @else
                                             No Image

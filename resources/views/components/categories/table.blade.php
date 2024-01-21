@@ -89,14 +89,16 @@
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                         {{ $category->updated_at }}</td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        <form action="{{ '/category/del/' . $category->id }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
+                                        <a>
                                             <button
-                                                class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                                [delete]
+                                                class="p-2 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-red-700 my-auto"
+                                                onclick="deleteCategory('{{ $category->id }}', '{{ $category->name }}',
+                                                '{{ csrf_token() }}')">
+                                                <img src="{{ asset('storage/delete.png') }}" title="edit-btn"
+                                                    alt="edit-btn" class="mr-1">
+                                                <span class="">Del</span>
                                             </button>
-                                        </form>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
