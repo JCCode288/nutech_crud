@@ -10,4 +10,10 @@
             <x-categories.table :dataArr="$categories" />
         </main>
         <!-- Main End -->
+        @session('addCategorySuccess')
+            <x-alert.notif :title="'Success'" :message="session('addCategorySuccess')" :type="'success'" />
+        @endsession
+        @session('delCategorySuccess')
+            <x-alert.notif :title="'Success'" :message="session('delCategorySuccess')" :type="'success'" />
+        @endsession
     </body>

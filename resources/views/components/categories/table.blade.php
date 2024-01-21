@@ -55,10 +55,6 @@
                                 </th>
                                 <th scope="col"
                                     class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Edit
-                                </th>
-                                <th scope="col"
-                                    class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     Delete
                                 </th>
                             </tr>
@@ -92,16 +88,8 @@
                                     </td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                         {{ $category->updated_at }}</td>
-                                    <td>
-                                        <a href="{{ '/category/edit/' . $category->id }}">
-                                            <button
-                                                class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                                [edit]
-                                            </button>
-                                        </a>
-                                    </td>
                                     <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        <form action="{{ '/category/' . $category->id }}" method="POST">
+                                        <form action="{{ '/category/del/' . $category->id }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button

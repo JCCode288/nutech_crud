@@ -63,6 +63,6 @@ class LoginController extends Controller
 
         User::create($validated);
 
-        return redirect('/login')->with('registerSuccess', $validated['name'] . 'is Successfully Registered');
+        return redirect('/login')->with('registerSuccess', $validated['name'] . ' is Successfully Registered');
     }
 }

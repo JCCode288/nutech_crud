@@ -59,7 +59,7 @@
                                 </th>
                                 <th scope="col"
                                     class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    Product Has Image
+                                    Product Image
                                 </th>
                                 <th scope="col"
                                     class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -113,7 +113,13 @@
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                         {{ $product->selling_price }}</td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                        {{ $product->image_path ? 'Yes' : 'No' }}</td>
+                                        @if ($product->image_path)
+                                            <img src="{{ asset($product->image_path) }}"
+                                                title="{{ $product->name . '_image' }}" alt="{{ $product->name }}" />
+                                        @else
+                                            No Image
+                                        @endif
+                                    </td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                         {{ $product->uploader->name }}</td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">

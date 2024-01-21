@@ -39,11 +39,14 @@ Route::group(['middleware' => AuthChecker::class], function () {
 
     Route::get(ViewRoute::$ADD_CATEGORY,  [CategoryController::class, 'addCategory']);
 
-    Route::get(ViewRoute::$PROFILE,  [Controller::class, 'profilePage']);
+    Route::post(ViewRoute::$ADD_CATEGORY,  [CategoryController::class, 'create']);
+
+    Route::delete(ViewRoute::$DELETE_CATEGORY,  [CategoryController::class, 'delete']);
 });
 
-
 Route::group(['login'], function () {
+    Route::get(ViewRoute::$PROFILE,  [Controller::class, 'profilePage']);
+
     Route::get(ViewRoute::$LOGIN,  [LoginController::class, 'index']);
 
     Route::post(ApiRoute::$LOGIN, [LoginController::class, 'login']);

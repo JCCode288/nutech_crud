@@ -46,7 +46,7 @@ class ProductController extends Controller
             'stock' => 'required|numeric|min:1',
             'product_price' => 'required|numeric|min:1',
             'category_id' => 'required|exists:categories,id|integer|min:1',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4096'
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:100'
         ]);
 
         $validated['uploader_id'] = Auth::getUser()->id;
@@ -86,7 +86,7 @@ class ProductController extends Controller
             'name' => 'required|max:255',
             'stock' => 'required|numeric|min:1',
             'product_price' => 'required|numeric|min:1',
-            'image' => 'nullable|image|max:4096',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
             'category_id' => 'required|exists:categories,id|integer|min:1'
         ]);
 

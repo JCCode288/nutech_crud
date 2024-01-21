@@ -34,18 +34,18 @@ class CategoryController extends Controller
 
         Category::create($validated);
 
-        return redirect()->route('/categories')->with('addCategorySuccess', $validated['name'] . ' is successfully added to categories list.');
+        return redirect(ViewRoute::$CATEGORIES)->with('addCategorySuccess', $validated['name'] . ' is successfully added to categories list.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
         $category = Category::find($id);
 
         Category::destroy($category->id);
 
-        return redirect('/categories')->route('')->with('delCategorySuccess', $category['name'] . ' is successfully deleted.');
+        return redirect(ViewRoute::$CATEGORIES)->with('delCategorySuccess', $category['name'] . ' is successfully deleted.');
     }
 }

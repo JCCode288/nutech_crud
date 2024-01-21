@@ -3,7 +3,9 @@
         Swal.fire({
             title: "{{ $title }}",
             text: "{{ $message }}",
-            icon: "{{ $type }}"
+            icon: "{{ $type }}",
+            showCloseButton: false,
+            timer: 1000
         });
     })
 </script>

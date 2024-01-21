@@ -13,13 +13,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function index(){
-        $products = Product::orderBy("created_at","desc")->paginate(10);
+    public function index()
+    {
+        $products = Product::orderBy("created_at", "desc")->paginate(10);
 
-        return view(ViewRoute::$VIEW_NAME['HOME'], ['products'=> $products]);
+        return view(ViewRoute::$VIEW_NAME['HOME'], ['products' => $products]);
     }
 
-    public function profilePage(){
-        return view(ViewRoute::$VIEW_NAME['PROFILE']);
+    public function profilePage()
+    {
+        $user = Auth::user();
+        return view(ViewRoute::$VIEW_NAME['PROFILE'], ['user' => $user]);
     }
 }
