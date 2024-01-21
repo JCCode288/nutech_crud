@@ -21,12 +21,19 @@ class Controller extends BaseController
         $category_id = $request->input("category_id");
 
         if ($category_id) {
-            $products = Product::where("category_id", $category_id)->orderBy("created_at", "desc")->paginate(10);
+            $products = Product::where("category_id", $category_id)->orderBy("created_at", "desc")->paginate(5);
         } else {
-            $products = Product::orderBy("created_at", "desc")->paginate(10);
+            $products = Product::orderBy("created_at", "desc")->paginate(5);
         }
 
-        return view(ViewRoute::$VIEW_NAME['HOME'], ['products' => $products, 'categories' => $categories]);
+        $data = [
+            'products' => $products,
+            'categories' => $categories,
+            'nextPage' => $products->nextPageUrl(),
+            'prevPage' => $products->previousPageUrl()
+        ];
+
+        return view(ViewRoute::$VIEW_NAME['HOME'], $data);
     }
 
     public function profilePage()

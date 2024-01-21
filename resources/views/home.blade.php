@@ -46,7 +46,7 @@
         <!-- Sidebar End -->
         <!-- Main Start -->
         <main class='flex relative flex-col text-wrap bg-inherit'>
-            <x-main.table :dataArr="$products" :categories="$categories" />
+            <x-main.table :dataArr="$products" :categories="$categories" :nextPage="$nextPage" :prevPage="$prevPage" />
         </main>
         <!-- Main End -->
 
