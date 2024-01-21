@@ -6,7 +6,7 @@
         <x-sidebar.base />
         <!-- Sidebar End -->
         <!-- Main Start -->
-        <main class='flex flex-col text-wrap bg-inherit'>
+        <main class='flex relative flex-col text-wrap bg-inherit h-full w-full'>
             <x-categories.table :dataArr="$categories" />
         </main>
         <!-- Main End -->

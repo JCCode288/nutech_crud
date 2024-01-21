@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Utils\ViewRoute;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,7 +15,12 @@ class CategoryController extends Controller
     {
         $categories = Category::orderBy("created_at", "desc")->paginate(10);
 
-        return view('categories', ['categories' => $categories]);
+        return view(ViewRoute::$VIEW_NAME['CATEGORIES'], ['categories' => $categories]);
+    }
+
+    public function addCategory()
+    {
+        return view(ViewRoute::$VIEW_NAME['ADD_CATEGORY'],);
     }
 
     /**
