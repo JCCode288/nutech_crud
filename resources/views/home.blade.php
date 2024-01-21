@@ -38,35 +38,6 @@
                 }
             });
         }
-
-        /**
-         * @params {string} data
-         */
-        function exportToExcel(data, csrfToken) {
-            data = JSON.parse(data).data
-
-
-            const form = document.createElement("form");
-            form.action = `/product/excel`;
-            form.method = "POST";
-            form.style.display = "none";
-
-            const dataInput = document.createElement('input');
-            dataInput.type = 'hidden';
-            dataInput.name = 'data';
-            dataInput.value = JSON.stringify(data);
-            form.appendChild(dataInput);
-
-            const csrfTokenField = document.createElement("input");
-            csrfTokenField.type = "hidden";
-            csrfTokenField.name = "_token";
-            csrfTokenField.value = csrfToken;
-            form.appendChild(csrfTokenField);
-
-            document.body.appendChild(form);
-
-            form.submit()
-        }
     </script>
 
     <body class='flex bg-gray-50 dark:bg-slate-800'>

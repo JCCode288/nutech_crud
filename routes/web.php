@@ -44,6 +44,8 @@ Route::group(['middleware' => AuthChecker::class], function () {
     Route::post(ViewRoute::$ADD_CATEGORY,  [CategoryController::class, 'create']);
 
     Route::delete(ViewRoute::$DELETE_CATEGORY,  [CategoryController::class, 'delete']);
+
+    Route::post(ViewRoute::$EXCEL_CATEGORY,  [CategoryController::class, 'excel']);
 });
 
 Route::group(['login'], function () {

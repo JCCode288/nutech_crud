@@ -4,8 +4,9 @@
 
         <div class="flex items-center mt-4 gap-x-3">
             <button
-                class="w-1/2 px-5 py-2 text-sm text-gray-800 transition-colors duration-200 bg-white border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-white dark:border-gray-700">
-                Download all
+                class="w-1/2 px-5 py-2 text-sm text-gray-800 transition-colors duration-200 bg-white border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-white dark:border-gray-700"
+                onclick="exportToExcel('{{ json_encode($dataArr) }}', '{{ csrf_token() }}', '/category/excel')">
+                Download Category
             </button>
 
             <a href="/category/create">

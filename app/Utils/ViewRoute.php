@@ -12,6 +12,7 @@ class ViewRoute
     public static $EXCEL_PRODUCT = '/product/excel';
     public static $ADD_CATEGORY = '/category/create';
     public static $DELETE_CATEGORY = '/category/del/{id}';
+    public static $EXCEL_CATEGORY = '/category/excel';
     public static $PROFILE = '/profile';
     public static $LOGIN = '/login';
     public static $REGISTER = '/register';

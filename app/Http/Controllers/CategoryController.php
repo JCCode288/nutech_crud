@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\JsonExport;
 use App\Models\Category;
 use App\Utils\ViewRoute;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryController extends Controller
 {
@@ -47,5 +49,12 @@ class CategoryController extends Controller
         Category::destroy($category->id);
 
         return redirect(ViewRoute::$CATEGORIES)->with('delCategorySuccess', $category['name'] . ' is successfully deleted.');
+    }
+
+    public function excel(Request $request)
+    {
+        $jsonData = json_decode($request->data, true);
+
+        return Excel::download(new JsonExport($jsonData), 'excel-category-' . date('Y-m-d') . '.xlsx');
     }
 }
