@@ -1,49 +1,59 @@
-<section class="w-screen h-screen p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-    <h1 class="text-2xl text-gray-800 dark:text-gray-200 p-4 font-semibold hidden sm:inline-block">Login Page</h1>
-    <div class="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-        <div class="px-6 py-4">
-            <h3 class="mt-3 text-xl font-medium text-center text-gray-600 dark:text-gray-200">Welcome Back</h3>
-
-            <p class="mt-1 text-center text-gray-500 dark:text-gray-400">Login or create account</p>
-
-            <form method="post" action="/login">
-                @csrf
-                <div class="w-full mt-4">
-                    <input
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300
-                        dark:text-gray-50 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                        type="email" placeholder="Email Address" aria-label="Email Address" name="email" />
-                    @error('email')
-                        <x-exception.text :message="$message" />
-                    @enderror
-                </div>
-
-                <div class="w-full mt-4">
-                    <input
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300
-                        dark:text-gray-50 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                        focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" type="password"
-                        placeholder="Password" aria-label="Password" name="password" />
-                    @error('password')
-                        <x-exception.text :message="$message" />
-                    @enderror
-                </div>
-
-                <div class="flex items-center justify-between mt-4">
-                    <button
-                        class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-                        type="submit">
-                        Sign In
-                    </button>
-                </div>
-            </form>
+<section class="w-full h-full p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+    <form action="/login" method="post"
+        class="flex max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-2xl dark:bg-gray-800 lg:max-w-4xl  border-opacity-[1%]">
+        @csrf
+        <div class="hidden bg-contain lg:block lg:w-1/2 bg-no-repeat"
+            style="background-image: url('{{ asset('storage/login-img.png') }}');">
         </div>
 
-        <div class="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
-            <span class="text-sm text-gray-600 dark:text-gray-200">Don't have an account? </span>
+        <div class="w-full px-6 py-8 md:px-8 lg:w-1/2">
+            <p class="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
+                Welcome back!
+            </p>
 
-            <a href="/register"
-                class="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Register</a>
+
+
+            <div class="mt-4">
+                <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="email">Email
+                    Address</label>
+                <input id="email"
+                    class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                    type="email" name="email" placeholder="Your Email" />
+                @error('email')
+                    <x-exception.text :message="$message" />
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                    for="email">Password</label>
+                <input id="password"
+                    class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+                    type="password" name="password" placeholder="Your Password" />
+                @error('password')
+                    <x-exception.text :message="$message" />
+                @enderror
+            </div>
+
+            <div class="mt-6">
+                <button
+                    class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                    type="submit">
+                    Sign In
+                </button>
+            </div>
+            <div class="w-full flex my-4">
+                <span class="text-sm text-gray-600 dark:text-gray-200 mx-auto">Don't have an account? </span>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+                <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+
+                <a href="/register"
+                    class="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline hover:bg-none hover:text-blue-600 focus:text-blue-800">Register
+                    Here</a>
+
+                <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+            </div>
         </div>
-    </div>
+    </form>
 </section>

@@ -1,4 +1,4 @@
-<section class="w-screen h-screen p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+<section class="w-full h-full p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
     <h1 class="text-2xl text-gray-800 dark:text-gray-200 p-4 font-semibold hidden sm:inline-block">Register Page
     </h1>
     <div class="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">

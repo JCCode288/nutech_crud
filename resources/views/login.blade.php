@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('page')
 
-    <body class='container'>
+    <body class='container w-full'>
         <x-login.form />
     </body>
     @session('error')
