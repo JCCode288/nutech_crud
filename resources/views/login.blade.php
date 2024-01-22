@@ -3,6 +3,7 @@
 
     <body class='container w-full'>
         <x-login.form />
+        <x-footer />
     </body>
     @session('error')
         <x-alert.notif :title="'Login Failed'" :message="session('error')" :type="'error'" />

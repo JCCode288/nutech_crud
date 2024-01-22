@@ -39,6 +39,5 @@
     </script>
 </head>
 @yield('page')
-<x-footer />
 
 </html>

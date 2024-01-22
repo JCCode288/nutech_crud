@@ -11,4 +11,6 @@
 
         </main>
         <!-- Main End -->
+        <x-footer />
+
     </body>
