@@ -1,16 +1,29 @@
 <section class="container px-4 mx-auto h-screen overflow-x-hidden w-full">
     <div class="sm:flex sm:items-center sm:justify-between">
         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Product List</h2>
+        <form class="relative mt-6" action="/" method="get">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </span>
+
+            <input type="text" name="search"
+                class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-red-400 dark:focus:border-red-300 focus:ring-red-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                placeholder="Search" />
+        </form>
 
         <div class="flex items-center mt-4 gap-x-3">
             <button id="excel-download"
                 onclick="exportToExcel('{{ json_encode($dataArr, null, 3) }}', '{{ csrf_token() }}')"
-                class="w-1/2 px-5 py-2 text-sm text-gray-800 transition-colors duration-200 bg-white border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-white dark:border-gray-700">
-                Download Table
+                class="w-1/2 px-5 py-2 text-sm text-gray-200 transition-colors duration-200 bg-green-900 border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-green-800 dark:text-white dark:border-gray-700 flex">
+                <span><img class="h-5 w-5 bg-cover" src="{{ @asset('/storage/excel.png') }}" /></span> Download Table
             </button>
             <a href="/product/create">
                 <button
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-[#F13B2F] rounded-lg sm:w-auto gap-x-2 hover:bg-red-600 dark:hover:bg-[#F13B2F] dark:bg-red-600">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_3098_154395)">
@@ -41,10 +54,14 @@
                                 <th scope="col"
                                     class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <div class="flex items-center gap-x-3">
-                                        <span>Product Name</span>
+                                        <span>No.</span>
                                     </div>
                                 </th>
 
+                                <th scope="col"
+                                    class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    Product Name
+                                </th>
                                 <th scope="col"
                                     class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     Stock
@@ -85,24 +102,17 @@
                                 <tr>
                                     <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                         <div class="inline-flex items-center gap-x-3">
-
                                             <div class="flex items-center gap-x-2">
-                                                <div
-                                                    class="flex items-center justify-center w-8 h-8 text-blue-500 bg-blue-100 rounded-full dark:bg-gray-800">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-5 h-5">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                                    </svg>
-                                                </div>
-
                                                 <div>
                                                     <h2 class="font-normal text-gray-800 dark:text-white ">
-                                                        {{ $product->name }}</h2>
+                                                        {{ $loop->index + 1 }}</h2>
                                                 </div>
                                             </div>
                                         </div>
+                                    </td>
+                                    <td
+                                        class="px-12 py-4 text-sm font-normal text-gray-800 dark:text-white whitespace-nowrap">
+                                        {{ $product->name }}
                                     </td>
                                     <td
                                         class="px-12 py-4 text-sm font-normal text-gray-800 dark:text-white whitespace-nowrap">
@@ -114,10 +124,19 @@
                                         {{ $product->selling_price }}</td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                         @if ($product->image_path)
-                                            <img src="{{ asset('storage/' . $product->image_path) }}"
-                                                title="{{ $product->name . '_image' }}" alt="{{ $product->name }}" />
+                                            <div class="w-16 h-16 overflow-hidden">
+                                                <img class="w-full h-full object-cover"
+                                                    src="{{ @asset('storage/' . $product->image_path) }}"
+                                                    title="{{ $product->name . '_image' }}"
+                                                    alt="{{ $product->name }}" />
+                                            </div>
                                         @else
-                                            No Image
+                                            <div class="w-16 h-16 overflow-hidden">
+                                                <img class="w-full h-full object-cover"
+                                                    src="{{ @asset('/storage/default_img.png') }}"
+                                                    title="{{ $product->name . '_image' }}"
+                                                    alt="{{ $product->name }}" />
+                                            </div>
                                         @endif
                                     </td>
                                     <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
@@ -154,7 +173,8 @@
                                     <a href="{{ $prevPage }}"
                                         class="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
+                                            stroke-width="1.5" stroke="currentColor"
+                                            class="w-5 h-5 rtl:-scale-x-100">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                                         </svg>
