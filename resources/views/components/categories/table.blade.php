@@ -3,15 +3,15 @@
         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Category List</h2>
 
         <div class="flex items-center mt-4 gap-x-3">
-            <button
-                class="w-1/2 px-5 py-2 text-sm text-gray-800 transition-colors duration-200 bg-white border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-white dark:border-gray-700"
-                onclick="exportToExcel('{{ json_encode($dataArr) }}', '{{ csrf_token() }}', '/category/excel')">
-                Download Category
+            <button id="excel-download"
+                onclick="exportToExcel('{{ json_encode($dataArr, null, 3) }}', '{{ csrf_token() }}', '/category/excel')"
+                class="w-1/2 px-5 py-2 text-sm text-gray-200 transition-colors duration-200 bg-green-900 border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-green-800 dark:text-white dark:border-gray-700 flex">
+                <span><img class="h-5 w-5 bg-cover" src="{{ @asset('/storage/excel.png') }}" /></span> Download Table
             </button>
 
             <a href="/category/create">
                 <button
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-gray-100 transition-colors duration-200 bg-[#F13B2F] rounded-lg sm:w-auto gap-x-2 hover:bg-red-600 dark:hover:bg-[#F13B2F] dark:bg-red-600">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_3098_154395)">
@@ -66,16 +66,6 @@
                                     <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                         <div class="inline-flex items-center gap-x-3">
                                             <div class="flex items-center gap-x-2">
-                                                <div
-                                                    class="flex items-center justify-center w-8 h-8 text-blue-500 bg-blue-100 rounded-full dark:bg-gray-800">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-5 h-5">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                                    </svg>
-                                                </div>
-
                                                 <div>
                                                     <h2 class="font-normal text-gray-800 dark:text-white ">
                                                         {{ $category->name }}</h2>
