@@ -10,6 +10,8 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Utils\ViewRoute;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class Controller extends BaseController
 {
@@ -31,7 +33,7 @@ class Controller extends BaseController
                 'prevPage' => $products->previousPageUrl()
             ];
 
-            return view(ViewRoute::$VIEW_NAME['HOME'], $data);
+            return Inertia::render(ViewRoute::$VUE['DASH'], $data);
         }
 
         if ($category_id) {
@@ -45,7 +47,7 @@ class Controller extends BaseController
                 'prevPage' => $products->previousPageUrl()
             ];
 
-            return view(ViewRoute::$VIEW_NAME['HOME'], $data);
+            return Inertia::render(ViewRoute::$VUE['DASH'], $data);
         }
 
         $products = Product::orderBy("created_at", "desc")->paginate(5);
@@ -58,13 +60,13 @@ class Controller extends BaseController
             'prevPage' => $products->previousPageUrl()
         ];
 
-        return view(ViewRoute::$VIEW_NAME['HOME'], $data);
+        return Inertia::render(ViewRoute::$VUE['DASH'], $data);
     }
 
     public function profilePage()
     {
         $user = Auth::user();
 
-        return view(ViewRoute::$VIEW_NAME['PROFILE'], ['user' => $user]);
+        return Inertia::render(ViewRoute::$VIEW_NAME['PROFILE'], ['user' => $user]);
     }
 }

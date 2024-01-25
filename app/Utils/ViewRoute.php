@@ -27,4 +27,10 @@ class ViewRoute
         'LOGIN' => 'login',
         'REGISTER' => 'register'
     ];
+
+    public static $VUE = [
+        'DASH' => "Dashboard", 
+        'ADD_PROD' => "AddProduct",
+        'ADD_CAT' => "AddCategory"
+    ];
 }
